@@ -1,0 +1,100 @@
+{
+	"name": "PL_EMAIL",
+	"properties": {
+		"activities": [
+			{
+				"name": "send_email",
+				"type": "WebActivity",
+				"dependsOn": [
+					{
+						"activity": "logic_apps_subject",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "logic_apps_email_body",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"method": "POST",
+					"headers": {
+						"Content-Type": "application/json"
+					},
+					"url": "https://prod-90.eastus.logic.azure.com:443/workflows/321e2fc5663b40799e4bc831b85aa81d/triggers/When_an_HTTP_request_is_received/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2FWhen_an_HTTP_request_is_received%2Frun&sv=1.0&sig=OYxGlbg-CMjRJgPbhuPMYg5YfICOnm-3_NFR-POqxOA",
+					"body": {
+						"value": "{\"email_recepient\": \"@{pipeline().parameters.email_recepient}\",\n\"subject\": \"@{variables('email_subject')}\",\n\"body\": \"@{variables('email_body')}\"}",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "logic_apps_subject",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "email_subject",
+					"value": {
+						"value": "@{pipeline().parameters.table_name} - @{pipeline().parameters.status}",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "logic_apps_email_body",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "email_body",
+					"value": {
+						"value": "The table @{pipeline().parameters.table_name} has been ingested. And the status is @{pipeline().parameters.status}",
+						"type": "Expression"
+					}
+				}
+			}
+		],
+		"parameters": {
+			"email_recepient": {
+				"type": "string"
+			},
+			"table_name": {
+				"type": "string"
+			},
+			"status": {
+				"type": "string"
+			}
+		},
+		"variables": {
+			"email_subject": {
+				"type": "String"
+			},
+			"email_body": {
+				"type": "String"
+			}
+		},
+		"annotations": [],
+		"lastPublishTime": "2026-10-07T08:07:28Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

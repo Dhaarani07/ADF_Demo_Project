@@ -1,0 +1,21 @@
+{
+	"name": "adflearndhaarani",
+	"properties": {
+		"globalParameters": {
+			"email_recepient": {
+				"type": "string",
+				"value": "dhaaranikiran@gmail.com"
+			}
+		},
+		"trustModeClaimForMi": {
+			"value": "Disabled",
+			"editable": true
+		}
+	},
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "4df64b9a-9f99-4571-8c0a-5fd877699da3",
+		"tenantId": "0ba519a9-8c4c-4188-8573-da21b0368c2e"
+	}
+}

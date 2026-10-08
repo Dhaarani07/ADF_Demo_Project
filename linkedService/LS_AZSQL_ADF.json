@@ -1,0 +1,17 @@
+{
+	"name": "LS_AZSQL_ADF",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "AzureSqlDatabase",
+		"typeProperties": {
+			"server": "azuresqldh.database.windows.net",
+			"database": "ADF-AZSQL-DH",
+			"encrypt": "mandatory",
+			"trustServerCertificate": false,
+			"authenticationType": "SQL",
+			"userName": "dhaaranikiran",
+			"encryptedCredential": "ew0KICAiVmVyc2lvbiI6ICIyMDE3LTExLTMwIiwNCiAgIlByb3RlY3Rpb25Nb2RlIjogIktleSIsDQogICJTZWNyZXRDb250ZW50VHlwZSI6ICJQbGFpbnRleHQiLA0KICAiQ3JlZGVudGlhbElkIjogIkRBVEFGQUNUT1JZQDkzM0M5RDNFLUE5MEQtNDRDQi05ODk1LUQwMUE0QkQzOEJFOV8xMmQ5YzkyNy03YjZiLTRkODYtOGI2ZC03NTcyYjk3NGE1NTYiDQp9"
+		}
+	}
+}
